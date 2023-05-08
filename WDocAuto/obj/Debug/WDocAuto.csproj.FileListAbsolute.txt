@@ -1,0 +1,16 @@
+G:\Github\WDocAuto\WDocAuto\bin\Debug\WDocAuto.exe.config
+G:\Github\WDocAuto\WDocAuto\bin\Debug\WDocAuto.exe
+G:\Github\WDocAuto\WDocAuto\bin\Debug\WDocAuto.pdb
+G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto.csproj.AssemblyReference.cache
+G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto.csproj.SuggestedBindingRedirects.cache
+G:\Github\WDocAuto\WDocAuto\obj\Debug\MainWindow.g.cs
+G:\Github\WDocAuto\WDocAuto\obj\Debug\App.g.cs
+G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto_MarkupCompile.cache
+G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto_MarkupCompile.lref
+G:\Github\WDocAuto\WDocAuto\obj\Debug\MainWindow.baml
+G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto.g.resources
+G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto.Properties.Resources.resources
+G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto.csproj.GenerateResource.cache
+G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto.csproj.CoreCompileInputs.cache
+G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto.exe
+G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto.pdb
