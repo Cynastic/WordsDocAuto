@@ -36,6 +36,11 @@ namespace WDocAuto
         public MainWindow()
         {
             InitializeComponent();
+            if (!File.Exists(SavedPathFile))
+            {
+                FileStream sw = File.Create(SavedPathFile);
+                sw.Close();
+            }
             currentPath = PathFromFile();
             if(currentPath == string.Empty)
             {
@@ -47,12 +52,11 @@ namespace WDocAuto
         public string ChangePathDialog()
         {
             WinForms.FolderBrowserDialog folderBrowser = new WinForms.FolderBrowserDialog();
-            folderBrowser.SelectedPath = "G:\\Test";
             folderBrowser.ShowDialog();
             
             if(Directory.Exists(folderBrowser.SelectedPath))
             {
-                Console.WriteLine("Set Path to: " + folderBrowser.SelectedPath);
+                //Console.WriteLine("Set Path to: " + folderBrowser.SelectedPath);
                 currentPath = folderBrowser.SelectedPath;
                 SavePathToFile();
                 GetSubDirectories();
@@ -60,7 +64,7 @@ namespace WDocAuto
             }
             else
             {
-                Console.WriteLine("Choosen Directory doesnt exist");
+                //Console.WriteLine("Choosen Directory doesnt exist");
                 return string.Empty;
             }
         }
@@ -73,14 +77,14 @@ namespace WDocAuto
             }
             else
             {
-                Console.WriteLine("Saved Path File was Empty");
+                //Console.WriteLine("Saved Path File was Empty");
                 return string.Empty;
             }
         }
 
         public void SavePathToFile()
         {
-            Console.WriteLine("Saving Path to Path File: " + SavedPathFile);
+            //Console.WriteLine("Saving Path to Path File: " + SavedPathFile);
             File.WriteAllText(SavedPathFile, currentPath);
         }
 
@@ -88,19 +92,19 @@ namespace WDocAuto
         {
             PathNameComboBox.Items.Clear();
             string[] SubDirs = Directory.GetDirectories(currentPath);
-            Console.WriteLine("Current Sub Folders:");
+            //Console.WriteLine("Current Sub Folders:");
             foreach(string s in SubDirs) 
             {
                 SubDirectories.Add(s);
-                Console.WriteLine(s);
+                //Console.WriteLine(s);
             }
-            Console.WriteLine("Current Sub Directory Names:");
+            //Console.WriteLine("Current Sub Directory Names:");
             foreach(string s in SubDirs)
             {
                 string PathName = System.IO.Path.GetFileName(s);
                 SubDirectories.Add(PathName);
                 PathNameComboBox.Items.Add(PathName);
-                Console.WriteLine(PathName);
+                //Console.WriteLine(PathName);
             }
         }
 
