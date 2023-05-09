@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WDocAuto"
         mc:Ignorable="d"
-        Title="MainWindow" Height="154" Width="232" ResizeMode="NoResize" Background="#FF1F1F1F"
-    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
+        Title="WordsDocAuto" Height="154" Width="232" ResizeMode="NoResize" Background="#FF1F1F1F"
+    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" Icon="/ICON.ico" Topmost="True">
     <Window.Resources>
 
         <Style x:Key="FocusVisual">
