@@ -18,3 +18,5 @@ G:\Github\WDocAuto\WDocAuto\bin\Debug\WDocAuto.exe.manifest
 G:\Github\WDocAuto\WDocAuto\bin\Debug\WDocAuto.application
 G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto.exe.manifest
 G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto.application
+G:\Github\WDocAuto\WDocAuto\obj\Debug\OptionsWindow.g.cs
+G:\Github\WDocAuto\WDocAuto\obj\Debug\OptionsWindow.baml
