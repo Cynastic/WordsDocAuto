@@ -20,50 +20,31 @@ namespace WDocAuto
     /// </summary>
     public partial class OptionsWindow : Window
     {
-        public MainWindow mainWindow;
-        bool FolderInTitle = false;
-        bool IncludeDateTop = true;
-        int TitleSize = 11;
-        public OptionsWindow(MainWindow mainWindow)
+        public OptionsManager optionsManager;
+
+        public OptionsWindow(OptionsManager optionsManager)
         {
-            //Lines
-            //1 = Path (string)
-            //2 = Folder Name in File Name (bool)
-            //3 = Size of Title Text (int)
-            //4 = Include Date on Top (bool)
             InitializeComponent();
-            this.mainWindow = mainWindow;
-            if(File.ReadAllLines(mainWindow.SavedPathFile).Length != 4 )
-            {
-                string[] write = { File.ReadAllLines(mainWindow.SavedPathFile)[0], FolderInTitle.ToString(), TitleSize.ToString(), IncludeDateTop.ToString()};
-                File.WriteAllLines(mainWindow.SavedPathFile, write);
-            }
+            this.optionsManager = optionsManager;
             GetOptions();
         }
 
         public void GetOptions()
         {
-            string[] options = File.ReadAllLines(mainWindow.SavedPathFile);
-            FolderInTitle = Convert.ToBoolean(options[1]);
-            TitleSize = Convert.ToInt32(options[2]);
-            IncludeDateTop = Convert.ToBoolean(options[3]);
-            this.IncludeInNameBox.IsChecked = FolderInTitle;
-            this.TitleSizeBox.Text = TitleSize.ToString();
-            this.IncludeFDateBox.IsChecked = IncludeDateTop;
+            this.IncludeInNameBox.IsChecked = optionsManager.FolderInFileName;
+            this.TitleSizeBox.Text = optionsManager.TitleSize.ToString();
+            this.IncludeFDateBox.IsChecked = optionsManager.IncludeFolderAndDate;
         }
 
         private void ApplyButtonClick(object sender, RoutedEventArgs e)
         {
-            string[] content = File.ReadAllLines(mainWindow.SavedPathFile);
-            string[] toWrite = { content[0], FolderInTitle.ToString(), TitleSize.ToString(), IncludeDateTop.ToString() };
-            File.WriteAllLines(mainWindow.SavedPathFile, toWrite);
-            mainWindow.UpdateOptions();
+            optionsManager.WriteOptions();
             this.Close();
         }
 
         private void InNameClick(object sender, RoutedEventArgs e)
         {
-            FolderInTitle = Convert.ToBoolean(IncludeInNameBox.IsChecked.ToString());
+            optionsManager.FolderInFileName = Convert.ToBoolean(IncludeInNameBox.IsChecked.ToString());
         }
 
         private void TitleSizeBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -75,7 +56,7 @@ namespace WDocAuto
         {
             try
             {
-                TitleSize = Convert.ToInt32(TitleSizeBox.Text);
+                optionsManager.TitleSize = Convert.ToInt32(TitleSizeBox.Text);
             }
             catch
             {
@@ -89,7 +70,7 @@ namespace WDocAuto
 
         private void IncludeFDateClick(object sender, RoutedEventArgs e)
         {
-            IncludeDateTop = Convert.ToBoolean(IncludeFDateBox.IsChecked.ToString());
+            optionsManager.IncludeFolderAndDate = Convert.ToBoolean(IncludeFDateBox.IsChecked.ToString());
         }
     }
 }

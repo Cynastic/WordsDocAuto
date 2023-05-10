@@ -25,8 +25,6 @@ namespace WDocAuto
     /// </summary>
     public partial class MainWindow : Window
     {
-        string currentPath = "C:\\";
-        string SelectedPath = string.Empty;
         List<string> SubDirectories = new List<string>();
         List<string> SubDirectoryNames = new List<string>();
         string DateDay = DateTime.Now.Day > 9 ? DateTime.Now.Day.ToString() : "0" + DateTime.Now.Day.ToString();
@@ -35,25 +33,16 @@ namespace WDocAuto
         
         public string SavedPathFile = AppDomain.CurrentDomain.BaseDirectory + "SavePath.txt";
 
-        //Options
-        bool FolderInTitle = false;
-        int TitleSize = 11;
-        bool IncludeFDate = true;
+        OptionsManager optionsManager;
 
         public MainWindow()
         {
             InitializeComponent();
-            if (!File.Exists(SavedPathFile))
+            optionsManager = new OptionsManager(SavedPathFile);
+            if(optionsManager.CurrentPath == "NOPATH")
             {
-                FileStream sw = File.Create(SavedPathFile);
-                sw.Close();
+                optionsManager.CurrentPath = ChangePathDialog();
             }
-            currentPath = PathFromFile();
-            if(currentPath == string.Empty)
-            {
-                currentPath = ChangePathDialog();
-            }
-            SavePathToFile();
             GetSubDirectories();
         }
 
@@ -65,44 +54,34 @@ namespace WDocAuto
                 if (Directory.Exists(folderBrowser.SelectedPath))
                 {
                     //Console.WriteLine("Set Path to: " + folderBrowser.SelectedPath);
-                    currentPath = folderBrowser.SelectedPath;
-                    SavePathToFile();
+                    optionsManager.CurrentPath = folderBrowser.SelectedPath;
+                    optionsManager.WriteOptions();
                     GetSubDirectories();
                     return folderBrowser.SelectedPath;
                 }
                 else
                 {
                     //Console.WriteLine("Choosen Directory doesnt exist");
-                    return string.Empty;
+                    return optionsManager.CurrentPath;
                 }
             }
-            return currentPath;
-        }
-
-        public string PathFromFile()
-        {
-            if(File.ReadAllLines(SavedPathFile).Length > 0)
-            {
-                return File.ReadAllLines(SavedPathFile)[0];
-            }
-            else
-            {
-                //Console.WriteLine("Saved Path File was Empty");
-                return string.Empty;
-            }
-        }
-
-        public void SavePathToFile()
-        {
-            //Console.WriteLine("Saving Path to Path File: " + SavedPathFile);
-            string[] content = { currentPath, FolderInTitle.ToString(), TitleSize.ToString(), IncludeFDate.ToString() };
-            File.WriteAllLines(SavedPathFile, content);
+            return optionsManager.CurrentPath;
         }
 
         public void GetSubDirectories()
         {
             PathNameComboBox.Items.Clear();
-            string[] SubDirs = Directory.GetDirectories(currentPath);
+            string[] SubDirs;
+            try
+            {
+                SubDirs = Directory.GetDirectories(optionsManager.CurrentPath);
+            }
+            catch
+            {
+                optionsManager.WriteStandard();
+                ChangePathDialog();
+                SubDirs = Directory.GetDirectories(optionsManager.CurrentPath);
+            }
             //Console.WriteLine("Current Sub Folders:");
             foreach(string s in SubDirs) 
             {
@@ -121,14 +100,7 @@ namespace WDocAuto
 
         public void UpdateOptions()
         {
-            string[] options = File.ReadAllLines(SavedPathFile);
-            FolderInTitle = Convert.ToBoolean(options[1]);
-            TitleSize = Convert.ToInt32(options[2]);
-            IncludeFDate = Convert.ToBoolean(options[3]);
-            //Console.WriteLine("Path = " + currentPath);
-            //Console.WriteLine("FolderInTitle = " + FolderInTitle);
-            //Console.WriteLine("Title Size = " + TitleSize);
-            //Console.WriteLine("Include Folder Name and Date = " + IncludeFDate);
+            optionsManager.ReadOptions();
         }
 
         public void SaveFileToCurrent(Word._Document FileToSave)
@@ -138,7 +110,7 @@ namespace WDocAuto
 
         public void ChangeButtonClick(object sender, EventArgs e)
         {
-            currentPath = ChangePathDialog();
+            optionsManager.CurrentPath = ChangePathDialog();
         }
 
         public void SaveButtonClick(object sender, EventArgs e)
@@ -163,7 +135,7 @@ namespace WDocAuto
             oDoc = oWord.Documents.Add(ref oMissing, ref oMissing,
             0, ref oMissing);
 
-            if (IncludeFDate)
+            if (optionsManager.IncludeFolderAndDate)
             {
                 Word.Paragraph Fach;
                 Fach = oDoc.Content.Paragraphs.Add(ref oMissing);
@@ -175,7 +147,7 @@ namespace WDocAuto
             Word.Paragraph US;
             US = oDoc.Content.Paragraphs.Add(ref oMissing);
             US.Range.Text = TitleText;
-            US.Range.Font.Size = TitleSize;
+            US.Range.Font.Size = optionsManager.TitleSize;
             US.Format.Alignment = Word.WdParagraphAlignment.wdAlignParagraphLeft;
             US.Range.Font.Bold = 1;
             US.Range.InsertParagraphAfter();
@@ -187,22 +159,30 @@ namespace WDocAuto
             Nothing.Format.SpaceAfter = 0;
             Nothing.Range.Font.Bold = 0;
 
-            if (!Directory.Exists(currentPath))
+            if (!Directory.Exists(optionsManager.CurrentPath + "\\" + PathNameComboBox.SelectedValue))
             {
-                currentPath = ChangePathDialog();
+                optionsManager.CurrentPath = ChangePathDialog();
             }
             //Console.WriteLine(oDoc.SaveFormat);
-            oDoc.SaveAs(currentPath + "\\" + SelectedPath + "\\" + (FolderInTitle? DatePath : DateOnly) + " " + TitleText + ".docx", Word.WdSaveFormat.wdFormatDocumentDefault);
+            try
+            {
+                oDoc.SaveAs(optionsManager.CurrentPath + "\\" + PathNameComboBox.SelectedValue + "\\" + (optionsManager.FolderInFileName ? DatePath : DateOnly) + " " + TitleText + ".docx", Word.WdSaveFormat.wdFormatDocumentDefault);
+            }
+            catch
+            {
+                MessageBox.Show("The file wasnt saved beacause a file with the same name already exists.","Warning");
+            }
+            
         }
 
         public void PathNameSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SelectedPath = (string)PathNameComboBox.SelectedValue;
+
         }
 
         private void OptionsButtonClick(object sender, RoutedEventArgs e)
         {
-            Window optionsWindow = new OptionsWindow(this);
+            Window optionsWindow = new OptionsWindow(optionsManager);
             optionsWindow.Show();
         }
     }
