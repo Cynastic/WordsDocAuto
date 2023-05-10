@@ -14,3 +14,7 @@ G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto.csproj.GenerateResource.cache
 G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto.csproj.CoreCompileInputs.cache
 G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto.exe
 G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto.pdb
+G:\Github\WDocAuto\WDocAuto\bin\Debug\WDocAuto.exe.manifest
+G:\Github\WDocAuto\WDocAuto\bin\Debug\WDocAuto.application
+G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto.exe.manifest
+G:\Github\WDocAuto\WDocAuto\obj\Debug\WDocAuto.application
