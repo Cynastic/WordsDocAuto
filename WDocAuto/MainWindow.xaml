@@ -539,7 +539,7 @@
                  Background="#FF404040" Foreground="White" BorderBrush="#FF6F6F6F"
                  />
 
-        <Label Background="#FF1F1F1F" Foreground="#FFE0E0E0" HorizontalAlignment="Center" VerticalAlignment="Center">Fach</Label>
-        <Label Grid.Row="1" Background="#FF1F1F1F" Foreground="#FFE0E0E0" HorizontalAlignment="Center" VerticalAlignment="Center">Titel</Label>
+        <Label Background="#FF1F1F1F" Foreground="#FFE0E0E0" HorizontalAlignment="Center" VerticalAlignment="Center">Folder</Label>
+        <Label Grid.Row="1" Background="#FF1F1F1F" Foreground="#FFE0E0E0" HorizontalAlignment="Center" VerticalAlignment="Center">Title</Label>
     </Grid>
 </Window>
