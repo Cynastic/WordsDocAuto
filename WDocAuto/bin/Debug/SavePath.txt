@@ -1,4 +1,5 @@
-C:\Users\pauld\OneDrive\Pictures
-True
+C:\Users\pauld\Schule
+False
 True
 11
+False

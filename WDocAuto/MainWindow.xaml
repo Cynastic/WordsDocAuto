@@ -539,7 +539,7 @@
             Style="{DynamicResource ButtonStyle1}"
             Click="SaveButtonClick" Grid.Row="2" Grid.Column="1" Margin="5" HorizontalAlignment="Right" Width="50" 
             Background="#FF404040" Foreground="#FFD4D4D4" Height="23" x:Name="SaveButton">
-            Open
+            Create
         </Button>
 
         <Button Style="{DynamicResource ButtonStyle1}"
@@ -552,7 +552,7 @@
                  x:Name="TitleTextBox" AcceptsReturn="False" 
                  Height="22" Width="150" HorizontalAlignment="Right" Margin="5"
                  VerticalAlignment="Center"
-                 Background="#FF404040" Foreground="White" BorderBrush="#FF6F6F6F"
+                 Background="#FF404040" Foreground="White" BorderBrush="#FF6F6F6F" KeyDown="TitleBox_KeyDown"
                  />
 
         <Label Background="#FF1F1F1F" Foreground="#FFE0E0E0" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2">Folder</Label>

@@ -34,6 +34,7 @@ namespace WDocAuto
             this.IncludeInNameBox.IsChecked = optionsManager.FolderInFileName;
             this.TitleSizeBox.Text = optionsManager.TitleSize.ToString();
             this.IncludeFDateBox.IsChecked = optionsManager.IncludeFolderAndDate;
+            this.CloseOnCreateBox.IsChecked = optionsManager.CloseOnCreate;
         }
 
         private void ApplyButtonClick(object sender, RoutedEventArgs e)
@@ -71,6 +72,11 @@ namespace WDocAuto
         private void IncludeFDateClick(object sender, RoutedEventArgs e)
         {
             optionsManager.IncludeFolderAndDate = Convert.ToBoolean(IncludeFDateBox.IsChecked.ToString());
+        }
+
+        private void CloseOnCreateBoxClick(object sender, RoutedEventArgs e)
+        {
+            optionsManager.CloseOnCreate = Convert.ToBoolean(CloseOnCreateBox.IsChecked);
         }
     }
 }

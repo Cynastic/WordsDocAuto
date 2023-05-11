@@ -167,10 +167,18 @@ namespace WDocAuto
             try
             {
                 oDoc.SaveAs(optionsManager.CurrentPath + "\\" + PathNameComboBox.SelectedValue + "\\" + (optionsManager.FolderInFileName ? DatePath : DateOnly) + " " + TitleText + ".docx", Word.WdSaveFormat.wdFormatDocumentDefault);
+                if (optionsManager.CloseOnCreate)
+                {
+                    this.Close();
+                }
             }
             catch
             {
                 MessageBox.Show("The file wasnt saved beacause a file with the same name already exists.","Warning");
+                if (optionsManager.CloseOnCreate)
+                {
+                    this.Close();
+                }
             }
             
         }
@@ -183,7 +191,16 @@ namespace WDocAuto
         private void OptionsButtonClick(object sender, RoutedEventArgs e)
         {
             Window optionsWindow = new OptionsWindow(optionsManager);
+            optionsWindow.Topmost = true;
             optionsWindow.Show();
+        }
+
+        private void TitleBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                CreateSaveDocument();
+            }
         }
     }
 }
