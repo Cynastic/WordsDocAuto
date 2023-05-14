@@ -1,6 +1,4 @@
 G:\Github\WDocAuto\WDocAuto\bin\Release\WDocAuto.exe.config
-G:\Github\WDocAuto\WDocAuto\bin\Release\WDocAuto.exe.manifest
-G:\Github\WDocAuto\WDocAuto\bin\Release\WDocAuto.application
 G:\Github\WDocAuto\WDocAuto\bin\Release\WDocAuto.exe
 G:\Github\WDocAuto\WDocAuto\bin\Release\WDocAuto.pdb
 G:\Github\WDocAuto\WDocAuto\obj\Release\WDocAuto.csproj.AssemblyReference.cache
@@ -14,8 +12,6 @@ G:\Github\WDocAuto\WDocAuto\obj\Release\WDocAuto.g.resources
 G:\Github\WDocAuto\WDocAuto\obj\Release\WDocAuto.Properties.Resources.resources
 G:\Github\WDocAuto\WDocAuto\obj\Release\WDocAuto.csproj.GenerateResource.cache
 G:\Github\WDocAuto\WDocAuto\obj\Release\WDocAuto.csproj.CoreCompileInputs.cache
-G:\Github\WDocAuto\WDocAuto\obj\Release\WDocAuto.exe.manifest
-G:\Github\WDocAuto\WDocAuto\obj\Release\WDocAuto.application
 G:\Github\WDocAuto\WDocAuto\obj\Release\WDocAuto.exe
 G:\Github\WDocAuto\WDocAuto\obj\Release\WDocAuto.pdb
 G:\Github\WDocAuto\WDocAuto\obj\Release\OptionsWindow.g.cs

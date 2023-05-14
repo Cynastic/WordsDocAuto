@@ -169,7 +169,7 @@ namespace WDocAuto
                 oDoc.SaveAs(optionsManager.CurrentPath + "\\" + PathNameComboBox.SelectedValue + "\\" + (optionsManager.FolderInFileName ? DatePath : DateOnly) + " " + TitleText + ".docx", Word.WdSaveFormat.wdFormatDocumentDefault);
                 if (optionsManager.CloseOnCreate)
                 {
-                    this.Close();
+                    Application.Current.Shutdown();
                 }
             }
             catch
@@ -177,7 +177,7 @@ namespace WDocAuto
                 MessageBox.Show("The file wasnt saved beacause a file with the same name already exists.","Warning");
                 if (optionsManager.CloseOnCreate)
                 {
-                    this.Close();
+                    Application.Current.Shutdown();
                 }
             }
             
