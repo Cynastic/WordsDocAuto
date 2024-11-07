@@ -12,9 +12,14 @@ DEBUG;TRACE
 G:\Github\WDocAuto\WDocAuto\App.xaml
 2-384114883
 
+<<<<<<< Updated upstream
 7-1308110314
 171124929338
+=======
+8613667807
+17-605146556
+>>>>>>> Stashed changes
 MainWindow.xaml;OptionsWindow.xaml;
 
-False
+True
 
